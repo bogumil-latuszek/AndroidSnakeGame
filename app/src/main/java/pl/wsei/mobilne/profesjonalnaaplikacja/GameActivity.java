@@ -106,7 +106,7 @@ public class GameActivity extends AppCompatActivity {
         Cell nextCell = gridBoard.GetCell(snake.MoveToX(), snake.MoveToY());
         //collision with itself
         if(snake.hasCell(nextCell)){
-            if(nextCell.IsEqual(snake.snakeBody.getLast())){
+            if(!nextCell.IsEqual(snake.snakeBody.getFirst())){
                 return true;
             }
         }

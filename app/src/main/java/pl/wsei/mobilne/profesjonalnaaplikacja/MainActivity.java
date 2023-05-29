@@ -9,15 +9,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private TextView scoreValue;
+    private TextView scoreLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        scoreValue = findViewById(R.id.yourScore);
+        //scoreValue.setVisibility(View.GONE);
+        scoreLabel = findViewById(R.id.scoreLabel);
+        //scoreLabel.setVisibility(View.GONE);
     }
 
     public void StartGame(View v){
@@ -38,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
                         Intent data = result.getData();
                         int score = data.getIntExtra("score", 0);
                         //String score = data.getStringExtra("score");
-                        Toast.makeText(getApplicationContext(), "score:"+score, Toast.LENGTH_SHORT).show();
+                        scoreValue.setText(""+score);
+                        //Toast.makeText(getApplicationContext(), "score:"+score, Toast.LENGTH_SHORT).show();
                     }
                 }
             });

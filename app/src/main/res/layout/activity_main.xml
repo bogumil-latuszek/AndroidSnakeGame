@@ -73,7 +73,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textViewHighscore"
+        android:id="@+id/highscoreLabel"
         android:layout_width="186dp"
         android:layout_height="23dp"
         android:text="Highscore:"
@@ -96,10 +96,10 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHighscore" />
+        app:layout_constraintTop_toBottomOf="@+id/highscoreLabel" />
 
     <TextView
-        android:id="@+id/textViewYourScore"
+        android:id="@+id/scoreLabel"
         android:layout_width="185dp"
         android:layout_height="24dp"
         android:text="your score:"
@@ -122,6 +122,6 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewYourScore" />
+        app:layout_constraintTop_toBottomOf="@+id/scoreLabel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,13 +14,12 @@ import java.util.LinkedList;
 public class GameActivity extends AppCompatActivity {
 
     private GridBoard gridBoard;
+    private int score;
     private Snake snake;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
-
 
         gridBoard = new GridBoard();
         TextView tv1 = findViewById(R.id.textView1);
@@ -75,16 +74,9 @@ public class GameActivity extends AppCompatActivity {
 
             });
         }
-        /*Cell occupiedCell1 = new Cell(tv5, 3, 1System.out.println("snake.MoveToX():");
-        System.out.println(snake.MoveToX()););
-        Cell occupiedCell2 = new Cell(tv6, 3, 2);
-        Cell occupiedCell3 = new Cell(tv7, 3, 3);
-        Cell[] occupiedCells = new Cell[]{occupiedCell1, occupiedCell2, occupiedCell3 };
-        gridBoard.GenerateFood(occupiedCells);
 
-        LinkedList<Cell> snake = new LinkedList<Cell>();
-        snake.add(occupiedCell1);
-        */
+        score = 0;
+
         final Handler handler = new Handler();
         final int delay = 1000; // 1000 milliseconds == 1 second
         handler.postDelayed(new Runnable() {
@@ -114,7 +106,9 @@ public class GameActivity extends AppCompatActivity {
         Cell nextCell = gridBoard.GetCell(snake.MoveToX(), snake.MoveToY());
         //collision with itself
         if(snake.hasCell(nextCell)){
-            return true;
+            if(nextCell.IsEqual(snake.snakeBody.getLast())){
+                return true;
+            }
         }
         snake.ProcessCell(nextCell);
         //than generate new food:

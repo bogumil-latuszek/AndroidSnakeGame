@@ -7,10 +7,10 @@ public class Snake {
     public LinkedList<Cell> snakeBody;
     private String bodySymbol;
 
-    public boolean hasCell(Cell cell){
+    public boolean hasCell(Cell otherCell){
         boolean found = false;
-        for(Cell c: snakeBody){
-            if(c.X == cell.X && c.Y == cell.Y){
+        for(Cell bodyCell: snakeBody){
+            if(bodyCell.IsEqual(otherCell)){
                 found = true;
                 break;
             }
@@ -64,10 +64,10 @@ public class Snake {
             snakeBody.add(cell);
         }
         else{
-            cell.textView.setText(bodySymbol);
-            snakeBody.add(cell);
             snakeBody.getFirst().textView.setText("");
             snakeBody.removeFirst();
+            cell.textView.setText(bodySymbol);
+            snakeBody.add(cell);
         }
         for(Cell c : snakeBody){
             System.out.println(c.X +", " + c.Y + ", has food:" + c.HasFood);

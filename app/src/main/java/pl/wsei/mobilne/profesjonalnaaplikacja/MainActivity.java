@@ -17,15 +17,20 @@ public class MainActivity extends AppCompatActivity {
     private TextView scoreValue;
     private TextView scoreLabel;
 
+    private void unhideScore(){
+        scoreLabel.setVisibility(View.VISIBLE);
+        scoreValue.setVisibility(View.VISIBLE);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         scoreValue = findViewById(R.id.yourScore);
-        //scoreValue.setVisibility(View.GONE);
+        scoreValue.setVisibility(View.GONE);
         scoreLabel = findViewById(R.id.scoreLabel);
-        //scoreLabel.setVisibility(View.GONE);
+        scoreLabel.setVisibility(View.GONE);
     }
 
     public void StartGame(View v){
@@ -47,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                         int score = data.getIntExtra("score", 0);
                         //String score = data.getStringExtra("score");
                         scoreValue.setText(""+score);
+                        unhideScore();
                         //Toast.makeText(getApplicationContext(), "score:"+score, Toast.LENGTH_SHORT).show();
                     }
                 }

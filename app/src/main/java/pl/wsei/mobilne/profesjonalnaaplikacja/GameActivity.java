@@ -15,13 +15,23 @@ public class GameActivity extends AppCompatActivity {
 
     private GridBoard gridBoard;
     private int score;
+    public class DoOnPointGained implements IDelegate{
+
+        @Override
+        public void Trigger() {
+            score += 1;
+        }
+    }
+    private DoOnPointGained doOnPointGained;
     private Snake snake;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        gridBoard = new GridBoard();
+        doOnPointGained = new DoOnPointGained();
+        gridBoard = new GridBoard(doOnPointGained);
+
         TextView tv1 = findViewById(R.id.textView1);
         TextView tv2 = findViewById(R.id.textView2);
         TextView tv3 = findViewById(R.id.textView3);
@@ -86,8 +96,14 @@ public class GameActivity extends AppCompatActivity {
                     handler.postDelayed(this, delay);
                 }
                 else{
-                    Intent i = new Intent(GameActivity.this, GameOverActivity.class);
-                    startActivity(i);
+                    //Toast.makeText(getApplicationContext(), "your score: "+score, Toast.LENGTH_SHORT).show();
+                    //Intent i = new Intent(GameActivity.this, GameOverActivity.class);
+                    //startActivity(i);
+                    Intent intent = new Intent();
+                    //intent.putExtra("score", "this Is The Score");
+                    intent.putExtra("score", score);
+                    setResult(123, intent);
+                    finish();
                 }
             }
         }, delay);

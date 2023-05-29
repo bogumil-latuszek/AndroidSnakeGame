@@ -8,20 +8,23 @@ public class GridBoard {
     private Cell[][] cells;
     public Cell[] cellsLinear;
 
+    private IDelegate triggerOnFoodEaten;
     public class DoOnFoodEaten implements IDelegate{
 
         @Override
         public void Trigger() {
             UpdateFoodStatus(false);
+            triggerOnFoodEaten.Trigger();
         }
     }
 
     //private TextView[] views;
-    public GridBoard(){
+    public GridBoard(IDelegate TriggerOnFoodEaten){
         //views = new TextView[25];
         cells = new Cell[5][5];
         cellsLinear = new Cell[25];
         foodExists = false;
+        triggerOnFoodEaten = TriggerOnFoodEaten;
     }
     public boolean HasCell(int x, int y){
         if(x>=0 && x<cells[0].length && y>=0 && y< cells.length){

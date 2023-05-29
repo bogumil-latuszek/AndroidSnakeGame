@@ -107,15 +107,15 @@ public class GameActivity extends AppCompatActivity {
     //frame
     public boolean GameFrame(){
 
-        //first move the snake:
-        //System.out.println("snake.MoveToX():");
-        //System.out.println(snake.MoveToX());
-        //System.out.println("snake.MoveToY():");
-        //System.out.println(snake.MoveToY());
+        //going out of bounds
         if( !gridBoard.HasCell(snake.MoveToX(), snake.MoveToY()) ){
             return true;
         }
         Cell nextCell = gridBoard.GetCell(snake.MoveToX(), snake.MoveToY());
+        //collision with itself
+        if(snake.hasCell(nextCell)){
+            return true;
+        }
         snake.ProcessCell(nextCell);
         //than generate new food:
         gridBoard.TryGeneratingFood(snake.SnakeBodyToArray());

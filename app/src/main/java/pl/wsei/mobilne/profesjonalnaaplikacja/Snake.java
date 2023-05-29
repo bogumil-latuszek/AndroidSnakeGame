@@ -7,6 +7,16 @@ public class Snake {
     public LinkedList<Cell> snakeBody;
     private String bodySymbol;
 
+    public boolean hasCell(Cell cell){
+        boolean found = false;
+        for(Cell c: snakeBody){
+            if(c.X == cell.X && c.Y == cell.Y){
+                found = true;
+                break;
+            }
+        }
+        return  found;
+    }
 
     public Cell[] SnakeBodyToArray(){
         Cell[] snakeBodyArray = new Cell[snakeBody.size()];
@@ -53,7 +63,7 @@ public class Snake {
             cell.textView.setText(bodySymbol);
             snakeBody.add(cell);
         }
-        else {
+        else{
             cell.textView.setText(bodySymbol);
             snakeBody.add(cell);
             snakeBody.getFirst().textView.setText("");
